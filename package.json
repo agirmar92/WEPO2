@@ -1,9 +1,30 @@
 {
-	"name" : "chatserver",
-	"description" : "WEPO Chat client assignment",
-	"version" : "0.0.1",
-	"dependencies" : {  
-		"express" : "3.1.0",
-		"socket.io" : "0.9.13"
-	}
+  "name": "chatserver",
+  "description": "WEPO Chat client assignment",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.1.0",
+    "socket.io": "0.9.13"
+  },
+  "main": "chatserver.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agirmar92/WEPO2.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "PairOfKnifes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agirmar92/WEPO2/issues"
+  },
+  "homepage": "https://github.com/agirmar92/WEPO2"
 }
