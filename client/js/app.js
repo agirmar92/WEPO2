@@ -3,9 +3,9 @@ var ChatClient = angular.module('ChatClient', ['ngRoute']);
 ChatClient.config(
 	function ($routeProvider) {
 		$routeProvider
-			.when('/login', { templateUrl: 'Views/login.html', controller: 'LoginController' })
-			.when('/rooms/:user/', { templateUrl: 'Views/rooms.html', controller: 'RoomsController' })
-			.when('/room/:user/:room/', { templateUrl: 'Views/room.html', controller: 'RoomController' })
+			.when('/login', { templateUrl: 'login.html', controller: 'LoginController' })
+			.when('/rooms/:user/', { templateUrl: 'rooms.html', controller: 'RoomsController' })
+			.when('/room/:user/:room/', { templateUrl: 'room.html', controller: 'RoomController' })
 			.otherwise({
 	  			redirectTo: '/login'
 			});
@@ -16,8 +16,9 @@ ChatClient.controller('LoginController', function ($scope, $location, $rootScope
 	
 	$scope.errorMessage = '';
 	$scope.nickname = '';
+	$scope.message = 'Your username';
 
-	$scope.login = function() {			
+	$scope.login = function() {
 		if ($scope.nickname === '') {
 			$scope.errorMessage = 'Please choose a nick-name before continuing!';
 		} else {
@@ -30,6 +31,7 @@ ChatClient.controller('LoginController', function ($scope, $location, $rootScope
 			});			
 		}
 	};
+
 });
 
 ChatClient.controller('RoomsController', function ($scope, $location, $rootScope, $routeParams, socket) {
