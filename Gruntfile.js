@@ -2,7 +2,7 @@ module.exports = function ( grunt ) {
  grunt.loadNpmTasks('grunt-contrib-jshint');
  var taskConfig = {
    jshint: {
-     src: ['scripts/app.js', 'scripts/loginController.js', 'scripts/roomsController.js', 'scripts/roomController.js'],
+     src: ['client/js/app.js', 'client/js/loginController.js', 'client/js/roomsController.js', 'client.js/roomController.js'],
      gruntfile: ['Gruntfile.js'],
      options: {
         curly:  true,
