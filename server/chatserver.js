@@ -40,7 +40,6 @@ io.sockets.on('connection', function (socket) {
 		var pass = joinObj.pass;
 		var accepted = true;
 		var reason;
-
 		//If the room does not exist
 		if(rooms[room] === undefined) {
 			rooms[room] = new Room();
@@ -95,6 +94,8 @@ io.sockets.on('connection', function (socket) {
 			}
 			fn(false, reason);
 		}
+		console.log("THESE ARE THE ROOMS")
+		console.log(rooms);
 	});
 
 	// when the client emits 'sendchat', this listens and executes
