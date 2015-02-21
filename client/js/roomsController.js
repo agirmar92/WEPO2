@@ -18,6 +18,7 @@ chatApp.controller('roomsController', function ($scope, $location, $rootScope, $
 		newRoom.room = $("#roomNameInput").val();
 
 		socket.emit('joinroom', newRoom, function (success, reason) {
+			console.log("joiningroom from addroom");
 			if (success) {
 				$scope.refreshRooms();
 			} else {
