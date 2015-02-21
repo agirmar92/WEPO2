@@ -94,8 +94,6 @@ io.sockets.on('connection', function (socket) {
 			}
 			fn(false, reason);
 		}
-		console.log("THESE ARE THE ROOMS")
-		console.log(rooms);
 	});
 
 	// when the client emits 'sendchat', this listens and executes
@@ -307,7 +305,7 @@ function Room() {
 	this.ops = {},
 	this.banned = {},
 	this.messageHistory = [],
-	this.topic = "No topic has been set for room..",
+	this.topic = "No topic has been set for room...",
 	this.locked = false,
 	this.password = "",
 

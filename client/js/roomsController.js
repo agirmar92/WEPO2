@@ -1,9 +1,8 @@
 chatApp.controller('roomsController', function ($scope, $location, $rootScope, $routeParams, socket) {
 	// TODO: Query chat server for active rooms
-	angular.element(document).ready(function () {
-        console.log("ELEMENTING...")
+	angular.element(document).ready(function() {
 		$scope.refreshRooms();
-    });
+	});
 
 	$scope.rooms;
 	$scope.currentUser = $routeParams.user;
@@ -11,30 +10,30 @@ chatApp.controller('roomsController', function ($scope, $location, $rootScope, $
 	$scope.displayAddRoom = function() {
 		$location.path('/addroom/' + $scope.currentUser);
 	};
-	
-	socket.on('roomlist', function(newRooms) {
-		$scope.rooms = Object.keys(newRooms);
-		console.log(Object.keys(newRooms));
-	});
-	
-	$scope.refreshRooms = function() {
-		socket.emit('rooms');
-	}
 
 	$scope.addRoom = function() {
-		var bla = {room: undefined,
-		           pass: undefined};
-		bla.room = $("#exampleInputEmail1").val();
-		socket.emit('joinroom', bla, function (success, reason) {
-			console.log($scope.rooms);
+		var newRoom = {room:  undefined,
+					   pass:  undefined};
+
+		newRoom.room = $("#roomNameInput").val();
+
+		socket.emit('joinroom', newRoom, function (success, reason) {
 			if (success) {
 				$scope.refreshRooms();
 			} else {
 				console.log("Error");
+				console.log(reason);
 			}
 		});
-		console.log($scope.rooms);
 
 		$location.path('/rooms/' + $scope.currentUser);
 	}
+
+	$scope.refreshRooms = function() {
+		socket.emit('rooms');
+	}
+
+	socket.on('roomlist', function(newRooms) {
+		$scope.rooms = Object.keys(newRooms);
+	});
 });
