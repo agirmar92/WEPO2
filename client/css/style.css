@@ -1,8 +1,7 @@
-#chatBody {
-	background-color: black;
-	text-align: center;
+* {
+	font-family: "consolas";
 }
 
-#chatHeader {
-	color: blue;
+#chatBody {
+	background-color: #888888;
 }
