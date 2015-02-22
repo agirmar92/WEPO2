@@ -9,16 +9,13 @@
 		<label for="roomNameInput">Message</label>
 		<input type="email" class="form-control" id="messageBox" placeholder="Enter message">
 		<button type="button" class="btn btn-primary" ng-click="sendChatMessage()">Send</button>
-
 	</div>
-	<div class="well well-sm" ng-repeat="message in messages">
+	<div id="comment-item" class="well well-sm" ng-repeat="message in messages">
 		<div>
-			<span class="glyphicon glyphicon-user"></span>
-			{{message.nick}}
+			<span class="glyphicon glyphicon-user"></span>{{message.nick}}
 			<span class="glyphicon glyphicon-time pull-right">{{formatDate(message.timestamp)}}</span>
-			
 		</div>
-		{{message.message}}
+		<p id="message">{{message.message}}</p>
 	</div>
 </div>
 <div class="col-md-3">

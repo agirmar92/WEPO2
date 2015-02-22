@@ -6,28 +6,27 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	$scope.currentUsers = [];
 	$scope.errorMessage = '';
 
+	// Updates the user list on the right when this signal is received.
 	socket.on('updateusers', function (roomName, users, ops) {
-		// TODO: Check if the roomName equals the current room !
-		$scope.currentUsers = users;
+		if(roomName === $scope.currentRoom) {
+			$scope.currentUsers = users;
+		}
+		
 	});
 
 
 	socket.on('updatetopic', function (roomName, topic, username) {
-		// TODO: Check if the roomName equals the current room !
 		if(roomName === $scope.currentRoom) {
 			$scope.currentTopic = topic;
 		}
 	});
 
+	// Update all chat messages for a particular room.
 	socket.on('updatechat', function (roomName, messages) {
-		// TODO: Check if the roomName equals the current room !
-		console.log(roomName);
-		console.log(messages);
 		if(roomName === $scope.currentRoom) {
+			// Update the message list and reverse it to
+			// display the newest message on top.
 			$scope.messages = messages.slice().reverse();
-			for (var i = 0; i < $scope.messages.length; i++) {
-				$scope.messages[i].date = new Date($scope.messages[i].timestamp);
-			};
 		}
 	});
 
