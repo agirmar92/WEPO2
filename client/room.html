@@ -7,7 +7,7 @@
 <div class="col-md-9">
 	<div class="well">
 		<label for="roomNameInput">Message</label>
-		<input type="email" class="form-control" id="messageBox" placeholder="Enter message">
+		<input type="text" class="form-control" id="messageBox" placeholder="Enter message" ng-model="messageText">
 		<button type="button" class="btn btn-primary" ng-click="sendChatMessage()">Send</button>
 	</div>
 	<div id="comment-item" class="well well-sm" ng-repeat="message in messages">
@@ -20,7 +20,7 @@
 </div>
 <div class="col-md-3">
 	<h4>Users in this room</h4>
-	<div class="well">
+	<div class="panel panel-default">
 		<ul>
 			<li ng-repeat="user in currentUsers">{{user}}</li>
 		</ul>

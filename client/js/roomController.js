@@ -5,6 +5,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	$scope.messages = [];
 	$scope.currentUsers = [];
 	$scope.errorMessage = '';
+	$scope.messageText = '';
 
 	// Updates the user list on the right when this signal is received.
 	socket.on('updateusers', function (roomName, users, ops) {
@@ -35,7 +36,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	});
 
 	$scope.sendChatMessage = function() {
-		var message = {roomName: $scope.currentRoom, msg: $("#messageBox").val()}
+		var message = {roomName: $scope.currentRoom, msg: $scope.messageText}
 		socket.emit('sendmsg', message);
 		$("#messageBox").val("");
 		$("#messageBox").focus();
