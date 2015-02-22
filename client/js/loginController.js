@@ -3,6 +3,11 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 	$scope.errorMessage = '';
 	$scope.nickname = '';
 
+	// When user presses Enter, log in.
+	$("#nickname").keypress(function(e) {
+		if(e.which == 13) $scope.login();
+	});
+
 	$scope.login = function() {
 		if ($scope.nickname === '') {
 			$scope.errorMessage = 'You have to choose a nickname!';

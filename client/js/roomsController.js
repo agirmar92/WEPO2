@@ -7,6 +7,11 @@ chatApp.controller('roomsController', function ($scope, $location, $rootScope, $
 	$scope.rooms;
 	$scope.currentUser = $routeParams.user;
 
+	// When user presses Enter, add a room.
+	$("#roomNameInput").keypress(function(e) {
+		if(e.which == 13) $scope.addRoom();
+	});
+
 	$scope.displayAddRoom = function() {
 		$location.path('/addroom/' + $scope.currentUser);
 	};

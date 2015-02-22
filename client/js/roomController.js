@@ -14,6 +14,10 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		
 	});
 
+	// When user presses Enter, send message.
+	$("#messageBox").keypress(function(e) {
+		if(e.which == 13) $scope.sendChatMessage();
+	});
 
 	socket.on('updatetopic', function (roomName, topic, username) {
 		if(roomName === $scope.currentRoom) {
@@ -34,6 +38,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		var message = {roomName: $scope.currentRoom, msg: $("#messageBox").val()}
 		socket.emit('sendmsg', message);
 		$("#messageBox").val("");
+		$("#messageBox").focus();
 	}
 
 	$scope.formatDate = function(date) {
