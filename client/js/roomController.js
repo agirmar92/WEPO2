@@ -12,7 +12,6 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		if(roomName === $scope.currentRoom) {
 			$scope.currentUsers = users;
 		}
-		
 	});
 
 	// When user presses Enter, send message.
@@ -68,7 +67,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 			} else {
 				console.log("Failed to kick user " + userToKick + " from room " + $scope.currentRoom);
 			}
-		})
+		});
 	}
 
 	$scope.banUser = function(userToBan) {
