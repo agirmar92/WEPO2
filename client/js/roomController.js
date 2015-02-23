@@ -40,6 +40,12 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		}
 	});
 
+	socket.on('banned', function(room, bannedUser, banner) {
+		if(bannedUser == $scope.currentUser) {
+			$location.path('/rooms/' + $scope.currentUser);
+		}
+	});
+
 	$scope.sendChatMessage = function() {
 		var message = {roomName: $scope.currentRoom, msg: $scope.messageText}
 		socket.emit('sendmsg', message);
@@ -71,7 +77,14 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	}
 
 	$scope.banUser = function(userToBan) {
-
+		var banObj = {user: userToBan, room: $scope.currentRoom};
+		socket.emit('ban', banObj, function(wasBanned) {
+			if (wasBanned) {
+				console.log("User " + userToBan + " banned from room " + $scope.currentRoom);
+			} else {
+				console.log("Failed to ban user " + userToBan + " from room " + $scope.currentRoom);
+			}
+		});
 	}
 
 	var joinObj = {room: $routeParams.room, pass: ""}
