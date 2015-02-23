@@ -1,0 +1,13 @@
+<h3>Hi {{currentUser}} - Your Inbox</h3>
+
+<button type="button" class="btn btn-primary" ng-click="displayNewMessage()">New message</button>
+
+<div class="well">
+	<div id="comment-item" class="well well-sm" ng-repeat="message in privateMessages">
+		<div>
+			<span class="glyphicon glyphicon-user"></span>{{message.nick}}
+			<span class="glyphicon glyphicon-time pull-right">{{formatDate(message.timestamp)}}</span>
+		</div>
+		{{message.message}}
+	</div>
+</div>

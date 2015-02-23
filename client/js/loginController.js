@@ -1,4 +1,4 @@
-chatApp.controller('loginController', function ($scope, $location, $rootScope, $routeParams, socket) {
+chatApp.controller('loginController', function ($scope, $location, $rootScope, $route, $routeParams, socket) {
 
 	$scope.errorMessage = '';
 	$scope.nickname = '';
@@ -14,11 +14,19 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 		} else {
 			socket.emit('adduser', $scope.nickname, function (available) {
 				if (available) {
+					$rootScope.user = $scope.nickname;
+					$rootScope.unreadCount = 0;
 					$location.path('/rooms/' + $scope.nickname);
 				} else {
 					$scope.errorMessage = 'Sorry, ' + $scope.nickname + ', but the nickname is already in use! Choose another.';
 				}
 			});
 		}
+	};
+
+	$rootScope.logout = function() {
+		socket.emit('disconnect');
+		$rootScope.user = ''
+		$route.reload();
 	};
 });

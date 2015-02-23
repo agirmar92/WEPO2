@@ -2,7 +2,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	$scope.currentRoom = $routeParams.room;
 	$scope.currentUser = $routeParams.user;
 	$scope.currentTopic = "";
-	$scope.messages = [];
+	$scope.privateMessages = [];
 	$scope.currentUsers = [];
 	$scope.errorMessage = '';
 	$scope.messageText = '';
