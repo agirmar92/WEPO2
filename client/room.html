@@ -25,9 +25,9 @@
 		<ul id="users-in-room-list">
 			<li ng-repeat="user in currentUsers">{{user}}
 				<div id="users-in-room-buttons" class="pull-right">
-					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope usersInRoomButtons" ng-click="leaveRoom(currentRoom)"></button>
-					<button type="button" class="btn btn-xs btn-warning glyphicon glyphicon-eye-close usersInRoomButtons" ng-click="leaveRoom(currentRoom)"></button>
-					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove usersInRoomButtons" ng-click="sendChatMessage()"></button>
+					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope  usersInRoomButtons" ng-click="emailuser(user)"></button>
+					<button type="button" class="btn btn-xs btn-warning glyphicon glyphicon-eye-close usersInRoomButtons" ng-click="kickUser(user)"></button>
+					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove     usersInRoomButtons" ng-click="banUser(user)"></button>
 				</div>
 			</li>
 		</ul>

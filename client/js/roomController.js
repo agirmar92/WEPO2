@@ -2,7 +2,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	$scope.currentRoom = $routeParams.room;
 	$scope.currentUser = $routeParams.user;
 	$scope.currentTopic = "";
-	$scope.privateMessages = [];
+	$scope.messages = [];
 	$scope.currentUsers = [];
 	$scope.errorMessage = '';
 	$scope.messageText = '';
@@ -35,6 +35,12 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		}
 	});
 
+	socket.on('kicked', function(room, kickedUser, kicker) {
+		if(kickedUser == $scope.currentUser) {
+			$location.path('/rooms/' + $scope.currentUser);
+		}
+	});
+
 	$scope.sendChatMessage = function() {
 		var message = {roomName: $scope.currentRoom, msg: $scope.messageText}
 		socket.emit('sendmsg', message);
@@ -52,6 +58,21 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		var year = d.getFullYear();
 
 		return day + '.' + mnth + '.' + year + ' - ' + hour + ':' + min + ':' + sec;
+	}
+
+	$scope.kickUser = function(userToKick) {
+		var kickObj = {user: userToKick, room: $scope.currentRoom};
+		socket.emit('kick', kickObj, function(wasKicked) {
+			if (wasKicked) {
+				console.log("User " + userToKick + " kicked from room " + $scope.currentRoom);
+			} else {
+				console.log("Failed to kick user " + userToKick + " from room " + $scope.currentRoom);
+			}
+		})
+	}
+
+	$scope.banUser = function(userToBan) {
+
 	}
 
 	var joinObj = {room: $routeParams.room, pass: ""}
