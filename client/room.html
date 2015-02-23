@@ -4,7 +4,8 @@
 
 <h3>{{currentRoom}}</h3>
 <h4>Current topic: {{currentTopic}}</h4>
-<div class="col-md-9">
+<div class="col-md-8">
+
 	<div class="well">
 		<label for="roomNameInput">Message</label>
 		<input type="text" class="form-control" id="messageBox" placeholder="Enter message" ng-model="messageText">
@@ -18,11 +19,17 @@
 		<p id="message">{{message.message}}</p>
 	</div>
 </div>
-<div class="col-md-3">
+<div id="users-in-room-list-container"class="col-md-4">
 	<h4>Users in this room</h4>
 	<div class="panel panel-default">
-		<ul>
-			<li ng-repeat="user in currentUsers">{{user}}</li>
+		<ul id="users-in-room-list">
+			<li ng-repeat="user in currentUsers">{{user}}
+				<div id="users-in-room-buttons" class="pull-right">
+					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope usersInRoomButtons" ng-click="leaveRoom(currentRoom)"></button>
+					<button type="button" class="btn btn-xs btn-warning glyphicon glyphicon-eye-close usersInRoomButtons" ng-click="leaveRoom(currentRoom)"></button>
+					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove usersInRoomButtons" ng-click="sendChatMessage()"></button>
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>
