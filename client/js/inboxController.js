@@ -9,8 +9,8 @@ chatApp.controller('inboxController', function ($scope, $location, $rootScope, $
 		console.log($rootScope.privateMessages);
 	});
 	socket.on('recv_privatemsg', function(username, recvdMessage) {
-		var msgObj = {nick: username, message: recvdMessage, timestamp: Date.now()}
-		$rootScope.privateMessages.push(msgObj)
+		var msgObj = {nick: username, message: recvdMessage, timestamp: Date.now()};
+		$rootScope.privateMessages.push(msgObj);
 		console.log($rootScope.privateMessages);
 		$rootScope.unreadCount++;
 	});
@@ -20,7 +20,7 @@ chatApp.controller('inboxController', function ($scope, $location, $rootScope, $
 	};
 
 	$scope.sendPrivateMessage = function() {
-		var msgObj = {nick: $scope.recipient, message: $scope.messageText}
+		var msgObj = {nick: $scope.recipient, message: $scope.messageText};
 		socket.emit('privatemsg',msgObj);
-	}
+	};
 });

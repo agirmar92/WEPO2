@@ -5,13 +5,14 @@ chatApp.controller('roomsController', function ($scope, $location, $rootScope, $
 		$("#roomNameInput").focus();
 	});
 
-	$scope.rooms;
 	$scope.currentUser = $routeParams.user;
 	$scope.newRoomName = '';
 
 	// When user presses Enter, add a room.
 	$("#roomNameInput").keypress(function(e) {
-		if(e.which == 13) $scope.addRoom();
+		if(e.which == 13) {
+			$scope.addRoom();
+		}
 	});
 
 	$scope.displayAddRoom = function() {
@@ -33,11 +34,11 @@ chatApp.controller('roomsController', function ($scope, $location, $rootScope, $
 		});
 
 		$location.path('/rooms/' + $scope.currentUser);
-	}
+	};
 
 	$scope.refreshRooms = function() {
 		socket.emit('rooms');
-	}
+	};
 
 	socket.on('roomlist', function(newRooms) {
 		$scope.rooms = Object.keys(newRooms);
