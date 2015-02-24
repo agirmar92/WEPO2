@@ -99,7 +99,7 @@ angular.module('chatApp').controller('roomController', function ($scope, $locati
 		if (!success) {
 			// WHY DID I NOT GET IN?!?!
 			if(reason === 'banned') {
-				$scope.errorMessage = 'You have been banned from this room.'
+				$scope.errorMessage = 'You have been banned from this room.';
 			} else {
 				$scope.errorMessage = reason;
 			}
