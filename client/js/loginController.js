@@ -1,4 +1,4 @@
-chatApp.controller('loginController', function ($scope, $location, $rootScope, $route, $routeParams, socket) {
+angular.module('chatApp').controller('loginController', function ($scope, $location, $rootScope, $route, $routeParams, socket) {
 
 	$scope.errorMessage = '';
 	$scope.nickname = '';
