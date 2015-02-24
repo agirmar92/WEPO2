@@ -137,7 +137,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('partroom', function (room) {
 		//remove the user from the room roster and room op roster.
 		delete rooms[room].users[socket.username];
-		delete rooms[room].ops[socket.username];
+		//delete rooms[room].ops[socket.username];
 		//Remove the channel from the user object in the global user roster.
 		delete users[socket.username].channels[room];
 		//Update the userlist in the room.
