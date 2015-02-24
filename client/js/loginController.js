@@ -12,7 +12,7 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 
 	$scope.login = function() {
 		if ($scope.nickname === '') {
-			$scope.errorMessage = 'You have to choose a nickname!';
+			$scope.errorMessage = 'The empty string is NOT a valid nickname!';
 		} else {
 			socket.emit('adduser', $scope.nickname, function (available) {
 				if (available) {
@@ -20,7 +20,7 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 					$rootScope.unreadCount = 0;
 					$location.path('/rooms/' + $scope.nickname);
 				} else {
-					$scope.errorMessage = 'Sorry, ' + $scope.nickname + ', but the nickname is already in use! Choose another.';
+					$scope.errorMessage = 'Sorry, ' + $scope.nickname + ', but someone has nicked your nick and is using it right now! Please choose another nick.';
 				}
 			});
 		}
