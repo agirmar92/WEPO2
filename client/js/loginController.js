@@ -5,7 +5,9 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 
 	// When user presses Enter, log in.
 	$("#nickname").keypress(function(e) {
-		if(e.which == 13) $scope.login();
+		if(e.which == 13) {
+			$scope.login();
+		}
 	});
 
 	$scope.login = function() {
@@ -26,7 +28,7 @@ chatApp.controller('loginController', function ($scope, $location, $rootScope, $
 
 	$rootScope.logout = function() {
 		socket.emit('disconnect');
-		$rootScope.user = ''
+		$rootScope.user = '';
 		$route.reload();
 	};
 });

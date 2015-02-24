@@ -16,7 +16,9 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 
 	// When user presses Enter, send message.
 	$("#messageBox").keypress(function(e) {
-		if(e.which == 13) $scope.sendChatMessage();
+		if(e.which == 13) {
+			$scope.sendChatMessage();
+		}
 	});
 
 	socket.on('updatetopic', function (roomName, topic, username) {
@@ -47,11 +49,11 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	});
 
 	$scope.sendChatMessage = function() {
-		var message = {roomName: $scope.currentRoom, msg: $scope.messageText}
+		var message = {roomName: $scope.currentRoom, msg: $scope.messageText};
 		socket.emit('sendmsg', message);
 		$("#messageBox").val("");
 		$("#messageBox").focus();
-	}
+	};
 
 	$scope.formatDate = function(date) {
 		var d = new Date(date);
@@ -63,7 +65,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 		var year = d.getFullYear();
 
 		return day + '.' + mnth + '.' + year + ' - ' + hour + ':' + min + ':' + sec;
-	}
+	};
 
 	$scope.kickUser = function(userToKick) {
 		var kickObj = {user: userToKick, room: $scope.currentRoom};
@@ -74,7 +76,7 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 				console.log("Failed to kick user " + userToKick + " from room " + $scope.currentRoom);
 			}
 		});
-	}
+	};
 
 	$scope.banUser = function(userToBan) {
 		var banObj = {user: userToBan, room: $scope.currentRoom};
@@ -85,13 +87,18 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 				console.log("Failed to ban user " + userToBan + " from room " + $scope.currentRoom);
 			}
 		});
-	}
+	};
 
-	var joinObj = {room: $routeParams.room, pass: ""}
+	$scope.depart = function() {
+		socket.emit('partroom', $scope.currentRoom);
+		$location.path('/rooms/' + $scope.currentUser);
+	};
+
+	var joinObj = {room: $routeParams.room, pass: ""};
 	socket.emit('joinroom', joinObj, function (success, reason) {
 		if (!success) {
 			// WHY DID I NOT GET IN?!?!
 			$scope.errorMessage = reason;
 		}
-	})
+	});
 });

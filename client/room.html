@@ -10,6 +10,7 @@
 		<label for="roomNameInput">Message</label>
 		<input type="text" class="form-control" id="messageBox" placeholder="Enter message" ng-model="messageText">
 		<button type="button" class="btn btn-primary" ng-click="sendChatMessage()">Send</button>
+		<button type="button" class="btn btn-primary" ng-click="depart()">Leave</button>
 	</div>
 	<div id="comment-item" class="well well-sm" ng-repeat="message in messages">
 		<div>
@@ -27,7 +28,7 @@
 				<div id="users-in-room-buttons" class="pull-right" ng-show="user != listUser">
 					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope  usersInRoomButtons" ng-click="emailuser(listUser)"></button>
 					<button type="button" class="btn btn-xs btn-warning glyphicon glyphicon-eye-close usersInRoomButtons" ng-click="kickUser(listUser)"></button>
-					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove     usersInRoomButtons" ng-click="banUser(listUser)"></button>
+					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-ban-circle     usersInRoomButtons" ng-click="banUser(listUser)"></button>
 				</div>
 			</li>
 		</ul>

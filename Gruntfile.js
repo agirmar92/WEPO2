@@ -1,10 +1,10 @@
 module.exports = function ( grunt ) {
- grunt.loadNpmTasks('grunt-contrib-jshint');
- var taskConfig = {
-   jshint: {
-     src: ['client/js/app.js', 'client/js/loginController.js', 'client/js/roomsController.js', 'client.js/roomController.js'],
-     gruntfile: ['Gruntfile.js'],
-     options: {
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  var taskConfig = {
+    jshint: {
+      src: ['client/js/*', '!client/js/socket.io.min.js'],
+      gruntfile: ['Gruntfile.js'],
+      options: {
         curly:  true,
         immed:  true,
         newcap: true,
@@ -20,7 +20,8 @@ module.exports = function ( grunt ) {
           angular: false,
           moment:  false,
           console: false,
-          $:       false
+          $:       false,
+          io:      false,
         }
      }
    }
