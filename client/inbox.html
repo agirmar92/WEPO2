@@ -1,6 +1,7 @@
 <h3>Hi {{currentUser}} - Your Inbox</h3>
 
 <button type="button" class="btn btn-primary" ng-click="displayNewMessage()">New message</button>
+<button type="button" class="btn btn-primary" ng-click="goToRooms()">To Rooms</button>
 
 <div class="well">
 	<div id="comment-item" class="well well-sm" ng-repeat="message in privateMessages">
