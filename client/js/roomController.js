@@ -98,7 +98,11 @@ chatApp.controller('roomController', function ($scope, $location, $rootScope, $r
 	socket.emit('joinroom', joinObj, function (success, reason) {
 		if (!success) {
 			// WHY DID I NOT GET IN?!?!
-			$scope.errorMessage = reason;
+			if(reason === 'banned') {
+				$scope.errorMessage = 'You have been banned from this room.'
+			} else {
+				$scope.errorMessage = reason;
+			}
 		}
 	});
 });
