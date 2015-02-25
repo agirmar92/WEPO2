@@ -31,10 +31,17 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.sendPrivateMessage = function() {
 
 		var msgObj = {nick: $scope.recipient, message: $scope.messageText};
+		if ($scope.recipient.length === undefined) {
+			$scope.errorMessage = 'You must specify a recipient.';
+		}
+		if ($scope.messageText.length === undefined) {
+			$scope.errorMessage = 'The message must contain content.';
+		}
 		if($scope.currentUser === $scope.recipient) {
 			$scope.errorMessage = 'You can\'t send a message to yourself.';
 			return;
 		}
+
 		socket.emit('privatemsg',msgObj, function(userExists) {
 			if(!userExists) {
 				$scope.errorMessage = 'The user you tried to send a message to does not exist.';

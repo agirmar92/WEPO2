@@ -8,15 +8,5 @@ angular.module('chatApp').controller('indexController', [
 		$location.path('rooms/' + $scope.currentUser);
 	};
 
-		$rootScope.depart = function(room) {
-		if (room !== undefined) {
-			socket.emit('partroom', room);
-			console.log("room");
-			console.log(room);
-		} else {
-			socket.emit('partroom', $scope.currentRoom);
-			console.log("$scope.currentRoom");
-			console.log($scope.currentRoom);
-		}
-	};
+
 }]);
