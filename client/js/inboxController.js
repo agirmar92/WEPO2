@@ -23,7 +23,21 @@ angular.module('chatApp').controller('inboxController', [
 
 	$scope.sendPrivateMessage = function() {
 		var msgObj = {nick: $scope.recipient, message: $scope.messageText};
-		socket.emit('privatemsg',msgObj);
+		if($scope.currentUser === $scope.recipient) {
+			console.log("You can't send a message to yourself.");
+			return;
+		}
+		socket.emit('privatemsg',msgObj, function(userExists) {
+			if(userExists) {
+				console.log("User Exists");
+			} else {
+				console.log("User does not exist");
+			}
+		});
 		$location.path('inbox/' + $scope.currentUser);
 	};
+
+	$scope.$on('$destroy', function() {
+		console.log("Dying controller");
+	})
 }]);

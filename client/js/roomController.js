@@ -112,4 +112,11 @@ angular.module('chatApp').controller('roomController', [
 			}
 		}
 	});
+
+	$scope.$on('$destroy', function() {
+		if ($rootScope.user !== ''){
+			$scope.depart();
+		}
+	});
+
 }]);

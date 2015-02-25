@@ -29,6 +29,7 @@ angular.module('chatApp').controller('loginController', [
 	};
 
 	$rootScope.logout = function() {
+		$location.path('/');
 		socket.emit('disco-net');
 		$rootScope.user = '';
 		$rootScope.privateMessages = [];
