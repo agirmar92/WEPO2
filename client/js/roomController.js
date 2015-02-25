@@ -96,6 +96,18 @@ angular.module('chatApp').controller('roomController', [
 		$location.path('inbox/newmessage/' + $scope.currentUser + '/' + userRecipient);
 	};
 
+	$rootScope.depart = function(room) {
+		if (room !== undefined) {
+			socket.emit('partroom', room);
+			console.log("room");
+			console.log(room);
+		} else {
+			socket.emit('partroom', $scope.currentRoom);
+			console.log("$scope.currentRoom");
+			console.log($scope.currentRoom);
+		}
+	};
+
 	var joinObj = {room: $routeParams.room, pass: ""};
 	socket.emit('joinroom', joinObj, function (success, roomExists, reason) {
 		if (!success) {

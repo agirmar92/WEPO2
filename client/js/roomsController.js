@@ -23,13 +23,14 @@ angular.module('chatApp').controller('roomsController', [
 					   pass:  undefined};
 
 		socket.emit('joinroom', newRoom, function (success, roomExists, reason) {
-			if (roomExists) {
-				console.log("Room Exists");
-				$scope.errorMessage = 'This room already exists. Please choose another name.'
-				$rootScope.depart($scope.newRoomName);
-			} else {
-				$location.path('/room/' + $scope.currentUser + '/' + $scope.newRoomName);
-			}
+			// if (roomExists) {
+			// 	console.log("Room Exists");
+			// 	$scope.errorMessage = 'This room already exists. Please choose another name.'
+			// 	$rootScope.depart($scope.newRoomName);
+			// } else {
+			// 	$location.path('/room/' + $scope.currentUser + '/' + $scope.newRoomName);
+			// }
+			$location.path('/rooms/' + $scope.currentUser);
 		});
 
 		var Topic = {room:  $scope.newRoomName,
