@@ -29,18 +29,19 @@ angular.module('chatApp').controller('inboxController', [
 	};
 
 	$scope.sendPrivateMessage = function() {
+
 		var msgObj = {nick: $scope.recipient, message: $scope.messageText};
 		if($scope.currentUser === $scope.recipient) {
-			console.log("You can't send a message to yourself.");
+			$scope.errorMessage = 'You can\'t send a message to yourself.';
 			return;
 		}
 		socket.emit('privatemsg',msgObj, function(userExists) {
-			if(userExists) {
-				$scope.successMessage = 'Message succeeded';
-			} else {
+			if(!userExists) {
 				$scope.errorMessage = 'The user you tried to send a message to does not exist.';
+				return;
+			} else {
+				$location.path('inbox/' + $scope.currentUser);
 			}
 		});
-		$location.path('inbox/' + $scope.currentUser);
 	};
 }]);
