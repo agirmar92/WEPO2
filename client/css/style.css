@@ -26,3 +26,7 @@
 #users-in-room-list-container {
 	margin-top:-39px;
 }
+
+.btn.btn-primary {
+	margin: 10px;
+}
