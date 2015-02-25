@@ -16,8 +16,12 @@ angular.module('chatApp').controller('inboxController', [
 		$location.path('rooms/' + $scope.currentUser);
 	};
 
-	$scope.displayNewMessage = function() {
-		$location.path('inbox/newmessage/' + $scope.currentUser);
+	$scope.displayNewMessage = function(recipient) {
+		if (recipient != null) {
+			$location.path('inbox/newmessage/' + $scope.currentUser + '/' + recipient);
+		} else {
+			$location.path('inbox/newmessage/' + $scope.currentUser);
+		}
 	};
 
 	$scope.sendPrivateMessage = function() {

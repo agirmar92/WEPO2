@@ -7,6 +7,7 @@
 	<div id="comment-item" class="well well-sm" ng-repeat="message in privateMessages">
 		<div>
 			<span class="glyphicon glyphicon-user"></span>{{message.nick}}
+			<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope  usersInRoomButtons" ng-click="displayNewMessage(message.nick)"></button>
 			<span class="glyphicon glyphicon-time pull-right">{{formatDate(message.timestamp)}}</span>
 		</div>
 		{{message.message}}
