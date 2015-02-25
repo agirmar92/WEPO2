@@ -1,4 +1,4 @@
-angular.module('chatApp').controller('loginController', function ($scope, $location, $rootScope, $route, $routeParams, socket) {
+angular.module('chatApp').controller('loginController', function ($scope, $location, $rootScope, $routeParams, socket) {
 
 	$scope.errorMessage = '';
 	$scope.nickname = '';
@@ -28,8 +28,8 @@ angular.module('chatApp').controller('loginController', function ($scope, $locat
 	};
 
 	$rootScope.logout = function() {
-		socket.emit('disconnect');
+		socket.emit('disco-net');
 		$rootScope.user = '';
-		$route.reload();
+		$rootScope.privateMessages = [];
 	};
 });
