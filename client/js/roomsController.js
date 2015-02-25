@@ -14,6 +14,12 @@ angular.module('chatApp').controller('roomsController', [
 		}
 	});
 
+	$("#roomTopicInput").keypress(function(e) {
+		if(e.which == 13) {
+			$scope.addRoom();
+		}
+	});
+
 	$scope.displayAddRoom = function() {
 		$location.path('/addroom/' + $scope.currentUser);
 	};
