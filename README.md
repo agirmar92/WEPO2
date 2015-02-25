@@ -6,6 +6,5 @@ Then run this command in the root of the project.
 
 	./init.sh
 
-======
 ## Chat Server
 We are using an edited version of the server.
