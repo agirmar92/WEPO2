@@ -1,10 +1,5 @@
 angular.module('chatApp').controller('roomsController', function ($scope, $location, $rootScope, $routeParams, socket) {
 	// TODO: Query chat server for active rooms
-	angular.element(document).ready(function() {
-		$scope.refreshRooms();
-		$("#roomNameInput").focus();
-	});
-
 	$scope.currentUser = $routeParams.user;
 	$scope.newRoomName = '';
 
