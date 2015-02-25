@@ -1,4 +1,6 @@
-angular.module('chatApp').controller('inboxController', function ($scope, $location, $rootScope, $routeParams, socket) {
+angular.module('chatApp').controller('inboxController', [
+	'$scope', '$location', '$rootScope', '$routeParams', 'socket', 
+	function ($scope, $location, $rootScope, $routeParams, socket) {
 	// TODO: Get private messages.
 	$scope.currentUser = $routeParams.user;
 	$scope.recipient = $routeParams.recipient;
@@ -24,4 +26,4 @@ angular.module('chatApp').controller('inboxController', function ($scope, $locat
 		socket.emit('privatemsg',msgObj);
 		$location.path('inbox/' + $scope.currentUser);
 	};
-});
+}]);

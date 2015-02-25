@@ -1,6 +1,6 @@
-angular.module('chatApp', ["ngRoute"]);
+angular.module('chatApp', ['ngRoute']);
 
-angular.module('chatApp').config(
+angular.module('chatApp').config(['$routeProvider', 
 	function ($routeProvider) {
 		$routeProvider
 			.when('/login',             { templateUrl: 'login.html',   controller: 'loginController' })
@@ -14,4 +14,4 @@ angular.module('chatApp').config(
 				redirectTo: '/login'
 			});
 	}
-);
+]);

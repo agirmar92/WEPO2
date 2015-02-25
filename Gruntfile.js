@@ -1,6 +1,7 @@
 module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   var taskConfig = {
     jshint: {
       src: ['client/js/*', '!client/js/socket.io.min.js'],
@@ -33,6 +34,12 @@ module.exports = function ( grunt ) {
       dest: 'client/js/concat.js',
     },
    },
+   uglify: {
+    bar: {
+      src: ['client/js/concat.js'],
+      dest: 'client/js/ugly.js',
+    }
+   }
  };
  grunt.initConfig(taskConfig);
 };

@@ -1,4 +1,6 @@
-angular.module('chatApp').controller('roomsController', function ($scope, $location, $rootScope, $routeParams, socket) {
+angular.module('chatApp').controller('roomsController', [
+	'$scope', '$location', '$rootScope', '$routeParams', 'socket',
+	function ($scope, $location, $rootScope, $routeParams, socket) {
 	// TODO: Query chat server for active rooms
 	$scope.currentUser = $routeParams.user;
 	$scope.newRoomName = '';
@@ -38,4 +40,4 @@ angular.module('chatApp').controller('roomsController', function ($scope, $locat
 	socket.on('roomlist', function(newRooms) {
 		$scope.rooms = Object.keys(newRooms);
 	});
-});
+}]);
