@@ -1,5 +1,6 @@
 module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   var taskConfig = {
     jshint: {
       src: ['client/js/*', '!client/js/socket.io.min.js'],
@@ -25,7 +26,13 @@ module.exports = function ( grunt ) {
           document:false,
         }
      }
-   }
+   },
+   concat: {
+    bar: {
+      src: ['client/js/*', '!client/js/socket.io.min.js'],
+      dest: 'client/js/concat.js',
+    },
+   },
  };
  grunt.initConfig(taskConfig);
 };

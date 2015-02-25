@@ -4,10 +4,6 @@ angular.module('chatApp').controller('inboxController', function ($scope, $locat
 	$scope.recipient = '';
 	$scope.messageText = '';
 
-	angular.element(document).ready(function() {
-		console.log($rootScope.privateMessages);
-	});
-
 	socket.on('recv_privatemsg', function(username, recvdMessage) {
 		var msgObj = {nick: username, message: recvdMessage, timestamp: Date.now()};
 		$rootScope.privateMessages.push(msgObj);
