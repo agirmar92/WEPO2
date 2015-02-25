@@ -1,4 +1,10 @@
 <any ng-init="resetCounter()"></any>
+<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+	{{errorMessage}}
+</div>
+<div class="alert alert-success" ng-cloak ng-show="errorMessage != ''">
+	{{successMessage}}
+</div>
 <h3>Hi {{currentUser}} - Your Inbox</h3>
 
 <button type="button" class="btn btn-primary" ng-click="displayNewMessage()">New message</button>

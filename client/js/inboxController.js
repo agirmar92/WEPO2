@@ -5,6 +5,8 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.currentUser = $routeParams.user;
 	$scope.recipient = $routeParams.recipient;
 	$scope.messageText = '';
+	$scope.errorMessage = '';
+	$scope.successMessage = '';
 
 	socket.on('recv_privatemsg', function(messages) {
 		if (messages.length !== $rootScope.privateMessages.length || $rootScope.unreadCount === 0) {
@@ -12,12 +14,7 @@ angular.module('chatApp').controller('inboxController', [
 		}
 		$rootScope.privateMessages = messages;
 		console.log($rootScope.privateMessages);
-		
 	});
-
-	$scope.goToRooms = function() {
-		$location.path('rooms/' + $scope.currentUser);
-	};
 
 	$scope.resetCounter = function() {
 		$rootScope.unreadCount = 0;
@@ -39,15 +36,11 @@ angular.module('chatApp').controller('inboxController', [
 		}
 		socket.emit('privatemsg',msgObj, function(userExists) {
 			if(userExists) {
-				console.log("User Exists");
+				$scope.successMessage = 'Message succeeded';
 			} else {
-				console.log("User does not exist");
+				$scope.errorMessage = 'The user you tried to send a message to does not exist.';
 			}
 		});
 		$location.path('inbox/' + $scope.currentUser);
 	};
-
-	$scope.$on('$destroy', function() {
-		console.log("Dying controller");
-	})
 }]);

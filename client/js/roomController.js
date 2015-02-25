@@ -1,6 +1,6 @@
 angular.module('chatApp').controller('roomController', [
-	'$scope', '$location', '$rootScope', '$routeParams', 'socket',
-	function ($scope, $location, $rootScope, $routeParams, socket) {
+	'$scope', '$location', '$rootScope', '$routeParams', 'socket', '$timeout',
+	function ($scope, $location, $rootScope, $routeParams, socket, $timeout) {
 	$scope.currentRoom = $routeParams.room;
 	$scope.currentUser = $routeParams.user;
 	$scope.currentTopic = "";
@@ -98,7 +98,6 @@ angular.module('chatApp').controller('roomController', [
 
 	$scope.depart = function() {
 		socket.emit('partroom', $scope.currentRoom);
-		$location.path('/rooms/' + $scope.currentUser);
 	};
 
 	var joinObj = {room: $routeParams.room, pass: ""};
@@ -107,6 +106,7 @@ angular.module('chatApp').controller('roomController', [
 			// WHY DID I NOT GET IN?!?!
 			if(reason === 'banned') {
 				$scope.errorMessage = 'Sorry, ' + $scope.currentUser + ', but you have been banned from this room.';
+				$timeout(function(){$location.path('rooms/' + $scope.currentUser);},3000);
 			} else {
 				$scope.errorMessage = reason;
 			}
