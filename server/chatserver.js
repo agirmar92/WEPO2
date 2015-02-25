@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
 			socket.username = username;
 
 			//Store user object in global user roster.
-			users[username] = { username: socket.username, channels: {}, socket: this };
+			users[username] = { username: socket.username, channels: {}, socket: this, messages: [] };
 			fn(true); // Callback, user name was available
 		}
 		else {
@@ -126,7 +126,8 @@ io.sockets.on('connection', function (socket) {
 		//If user exists in global user list.
 		if(users[msgObj.nick] !== undefined) {
 			//Send the message only to this user.
-			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
+			users[msgObj.nick].messages.push(msgObj);
+			users[msgObj.nick].socket.emit('recv_privatemsg', users[msgObj.nick].messages);
 			//Callback recieves true.
 			fn(true);
 		}

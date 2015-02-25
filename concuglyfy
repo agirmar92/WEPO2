@@ -1,0 +1,5 @@
+#!/bin/bash
+rm client/js/concat.js
+rm client/js/ugly.js
+grunt concat
+grunt uglify
