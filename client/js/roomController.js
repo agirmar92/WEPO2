@@ -75,7 +75,8 @@ angular.module('chatApp').controller('roomController', [
 			if (wasKicked) {
 				console.log("User " + userToKick + " kicked from room " + $scope.currentRoom);
 			} else {
-				console.log("Failed to kick user " + userToKick + " from room " + $scope.currentRoom);
+				$scope.errorMessage = 'You do not have the rights to kick the user.';
+				$timeout(function(){$scope.errorMessage = ''},3000);
 			}
 		});
 	};
@@ -86,7 +87,8 @@ angular.module('chatApp').controller('roomController', [
 			if (wasBanned) {
 				console.log("User " + userToBan + " banned from room " + $scope.currentRoom);
 			} else {
-				console.log("Failed to ban user " + userToBan + " from room " + $scope.currentRoom);
+				$scope.errorMessage = 'You do not have the rights to ban the user.';
+				$timeout(function(){$scope.errorMessage = ''}, 3000);
 			}
 		});
 	};

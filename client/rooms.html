@@ -1,4 +1,7 @@
 <any ng-init="refreshRooms()"></any>
+<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+	{{errorMessage}}
+</div>
 <h3>Hi {{currentUser}} - Active chat rooms</h3>
 
 <button type="button" class="btn btn-primary" ng-click="displayAddRoom()">Add room</button>
