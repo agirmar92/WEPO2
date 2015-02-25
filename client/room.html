@@ -26,7 +26,7 @@
 		<ul id="users-in-room-list">
 			<li ng-repeat="listUser in currentUsers">{{listUser}}
 				<div id="users-in-room-buttons" class="pull-right" ng-show="user != listUser">
-					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope  usersInRoomButtons" ng-click="emailuser(listUser)"></button>
+					<button type="button" class="btn btn-xs btn-default glyphicon glyphicon-envelope  usersInRoomButtons" ng-click="sendPM(listUser)"></button>
 					<button type="button" class="btn btn-xs btn-warning glyphicon glyphicon-eye-close usersInRoomButtons" ng-click="kickUser(listUser)"></button>
 					<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-ban-circle usersInRoomButtons" ng-click="banUser(listUser)"></button>
 				</div>
