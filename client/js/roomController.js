@@ -1,4 +1,6 @@
-angular.module('chatApp').controller('roomController', function ($scope, $location, $rootScope, $routeParams, socket) {
+angular.module('chatApp').controller('roomController', [
+	'$scope', '$location', '$rootScope', '$routeParams', 'socket',
+	function ($scope, $location, $rootScope, $routeParams, socket) {
 	$scope.currentRoom = $routeParams.room;
 	$scope.currentUser = $routeParams.user;
 	$scope.currentTopic = "";
@@ -105,4 +107,4 @@ angular.module('chatApp').controller('roomController', function ($scope, $locati
 			}
 		}
 	});
-});
+}]);
