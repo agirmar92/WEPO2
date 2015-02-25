@@ -91,6 +91,11 @@ angular.module('chatApp').controller('roomController', [
 		});
 	};
 
+	$scope.sendPM = function(userRecipient) {
+		console.log(userRecipient);
+		$location.path('inbox/newmessage/' + $scope.currentUser + '/' + userRecipient);
+	};
+
 	$scope.depart = function() {
 		socket.emit('partroom', $scope.currentRoom);
 		$location.path('/rooms/' + $scope.currentUser);

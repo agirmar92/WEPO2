@@ -3,7 +3,7 @@ angular.module('chatApp').controller('inboxController', [
 	function ($scope, $location, $rootScope, $routeParams, socket) {
 	// TODO: Get private messages.
 	$scope.currentUser = $routeParams.user;
-	$scope.recipient = '';
+	$scope.recipient = $routeParams.recipient;
 	$scope.messageText = '';
 
 	socket.on('recv_privatemsg', function(username, recvdMessage) {
@@ -24,5 +24,6 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.sendPrivateMessage = function() {
 		var msgObj = {nick: $scope.recipient, message: $scope.messageText};
 		socket.emit('privatemsg',msgObj);
+		$location.path('inbox/' + $scope.currentUser);
 	};
 }]);
