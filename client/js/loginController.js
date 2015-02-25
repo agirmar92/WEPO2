@@ -24,7 +24,6 @@ angular.module('chatApp').controller('loginController', function ($scope, $locat
 				}
 			});
 		}
-		//$.notify("You tried to log in.");
 	};
 
 	$rootScope.logout = function() {
