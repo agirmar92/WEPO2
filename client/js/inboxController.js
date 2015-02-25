@@ -8,6 +8,12 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.errorMessage = '';
 	$scope.successMessage = '';
 
+	$("#messageTextInput").keypress(function(e) {
+		if(e.which == 13) {
+			$scope.sendPrivateMessage();
+		}
+	});
+
 	socket.on('recv_privatemsg', function(messages) {
 		if (messages.length !== $rootScope.privateMessages.length || $rootScope.unreadCount === 0) {
 			$rootScope.unreadCount++;
@@ -23,8 +29,10 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.displayNewMessage = function(recipient) {
 		if (recipient != null) {
 			$location.path('inbox/newmessage/' + $scope.currentUser + '/' + recipient);
+			$("#messageTextInput").focus();
 		} else {
 			$location.path('inbox/newmessage/' + $scope.currentUser);
+			$("#recipientInput").focus();
 		}
 	};
 

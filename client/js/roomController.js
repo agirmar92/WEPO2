@@ -120,6 +120,8 @@ angular.module('chatApp').controller('roomController', [
 			} else {
 				$scope.errorMessage = reason;
 			}
+		} else {
+			$("#messageBox").focus();
 		}
 	});
 
