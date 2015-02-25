@@ -6,9 +6,7 @@ angular.module('chatApp').controller('inboxController', function ($scope, $locat
 
 	socket.on('recv_privatemsg', function(username, recvdMessage) {
 		var msgObj = {nick: username, message: recvdMessage, timestamp: Date.now()};
-		if (msgObj.nick == $scope.currentUser) {
-			$rootScope.privateMessages.push(msgObj);
-		}
+		$rootScope.privateMessages.push(msgObj);
 		console.log($rootScope.privateMessages);
 		$rootScope.unreadCount++;
 	});
