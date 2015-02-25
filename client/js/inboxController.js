@@ -7,13 +7,20 @@ angular.module('chatApp').controller('inboxController', [
 	$scope.messageText = '';
 
 	socket.on('recv_privatemsg', function(messages) {
+		if (messages.length !== $rootScope.privateMessages.length || $rootScope.unreadCount === 0) {
+			$rootScope.unreadCount++;
+		}
 		$rootScope.privateMessages = messages;
 		console.log($rootScope.privateMessages);
-		$rootScope.unreadCount++;
+		
 	});
 
 	$scope.goToRooms = function() {
 		$location.path('rooms/' + $scope.currentUser);
+	};
+
+	$scope.resetCounter = function() {
+		$rootScope.unreadCount = 0;
 	};
 
 	$scope.displayNewMessage = function(recipient) {

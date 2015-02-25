@@ -41,7 +41,7 @@
 				<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right" ng-show="user">
-					<li class=""><a href="#/inbox/{{user}}">Inbox <span class="badge">{{unreadCount}}</span></a></li>
+					<li class=""><a href="#/inbox/{{user}}">Inbox <span class="badge" ng-show="unreadCount != 0">{{unreadCount}}</span></a></li>
 					<li class=""><a href="#/"ng-click="logout()">Log out</a></li>
 				</ul>
 			</div>

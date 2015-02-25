@@ -122,12 +122,13 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('privatemsg', function (msgObj, fn) {
-
+		var receiver = msgObj.nick;
 		//If user exists in global user list.
-		if(users[msgObj.nick] !== undefined) {
+		if(users[receiver] !== undefined) {
 			//Send the message only to this user.
-			users[msgObj.nick].messages.push(msgObj);
-			users[msgObj.nick].socket.emit('recv_privatemsg', users[msgObj.nick].messages);
+			msgObj.nick = socket.username;
+			users[receiver].messages.push(msgObj);
+			users[receiver].socket.emit('recv_privatemsg', users[receiver].messages);
 			//Callback recieves true.
 			fn(true);
 		}
