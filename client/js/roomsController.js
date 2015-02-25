@@ -4,6 +4,7 @@ angular.module('chatApp').controller('roomsController', [
 	// TODO: Query chat server for active rooms
 	$scope.currentUser = $routeParams.user;
 	$scope.newRoomName = '';
+	$scope.errorMessage = '';
 
 	// When user presses Enter, add a room.
 	$("#roomNameInput").keypress(function(e) {
@@ -21,12 +22,13 @@ angular.module('chatApp').controller('roomsController', [
 					   pass:  undefined};
 		newRoom.room = $scope.newRoomName;
 
-		socket.emit('joinroom', newRoom, function (success, reason) {
-			if (success) {
-				$scope.refreshRooms();
+		socket.emit('joinroom', newRoom, function (success, roomExists, reason) {
+			if (roomExists) {
+				console.log("Room Exists");
+				$scope.errorMessage = 'This room already exists. Please choose another name.'
+				$rootScope.depart($scope.newRoomName);
 			} else {
-				console.log("Error");
-				console.log(reason);
+				$location.path('/room/' + $scope.currentUser + '/' + $scope.newRoomName);
 			}
 		});
 
