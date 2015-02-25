@@ -96,12 +96,8 @@ angular.module('chatApp').controller('roomController', [
 		$location.path('inbox/newmessage/' + $scope.currentUser + '/' + userRecipient);
 	};
 
-	$scope.depart = function() {
-		socket.emit('partroom', $scope.currentRoom);
-	};
-
 	var joinObj = {room: $routeParams.room, pass: ""};
-	socket.emit('joinroom', joinObj, function (success, reason) {
+	socket.emit('joinroom', joinObj, function (success, roomExists, reason) {
 		if (!success) {
 			// WHY DID I NOT GET IN?!?!
 			if(reason === 'banned') {

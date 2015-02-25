@@ -7,4 +7,12 @@ angular.module('chatApp').controller('indexController', [
 	$rootScope.goToRooms = function() {
 		$location.path('rooms/' + $scope.currentUser);
 	};
+
+		$rootScope.depart = function(room) {
+		if (room !== undefined) {
+			socket.emit('partroom', room);
+		} else {
+			socket.emit('partroom', $scope.currentRoom);
+		}
+	};
 }]);
